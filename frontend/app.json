@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "BalanceFlowApp",
-    "slug": "BalanceFlowApp",
+    "name": "TaskWallet",
+    "slug": "TaskWallet",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,7 +22,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.samisial.BalanceFlowApp",
+      "bundleIdentifier": "com.samisial.taskwallet",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
@@ -33,7 +33,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.samisial.BalanceFlowApp"
+      "package": "com.samisial.taskwallet"
     },
     "web": {
       "bundler": "metro"
