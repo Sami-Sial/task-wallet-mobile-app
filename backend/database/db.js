@@ -1,5 +1,4 @@
 const mysql = require('mysql2/promise');
-const fs = require("fs")
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -11,7 +10,7 @@ const pool = mysql.createPool({
     queueLimit: 0,
     ssl: {
         rejectUnauthorized: true,
-        ca: fs.readFileSync('./database/ca.pem')
+        ca: process.env.DB_CA
     }
 });
 
