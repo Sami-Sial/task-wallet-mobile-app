@@ -1,5 +1,6 @@
-CREATE DATABASE IF NOT EXISTS balance_flow;
-USE balance_flow;
+-- will use aiven hosted db already created no need of creating db
+-- CREATE DATABASE IF NOT EXISTS task_wallet;
+-- USE task_wallet;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
