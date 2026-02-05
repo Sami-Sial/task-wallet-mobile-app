@@ -17,7 +17,7 @@
     },
     "splash": {
       "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "ios": {
@@ -40,7 +40,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "dab5dc8f-8959-42bb-8372-af6449676c92"
+        "projectId": "8a638e2e-0210-42ca-a95c-f4216c3ad864"
       }
     }
   }

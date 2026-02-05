@@ -156,12 +156,6 @@ const DashboardScreen = () => {
         ? ((currentMonthIncome - prevMonthIncome) / prevMonthIncome) * 100
         : 0;
 
-    // Get current month expenses
-    const monthlyExpenses = expenses.filter(expense => {
-        const date = new Date(expense.transaction_date);
-        return date.getMonth() === currentMonth && date.getFullYear() === currentYear;
-    }).reduce((sum, expense) => sum + parseFloat(expense.amount || 0), 0);
-
     // Get greeting based on time of day
     const getGreeting = () => {
         const hour = new Date().getHours();
@@ -416,10 +410,7 @@ const DashboardScreen = () => {
                                         </Text>
                                         <View className="flex-row items-baseline gap-2">
                                             <Text className="text-white text-3xl font-extrabold">
-                                                ${monthlyExpenses.toFixed(2)}
-                                            </Text>
-                                            <Text className="text-slate-500 text-xs font-bold">
-                                                Monthly
+                                                ${totalExpense.toFixed(2)}
                                             </Text>
                                         </View>
                                     </View>

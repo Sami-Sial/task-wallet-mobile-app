@@ -23,7 +23,7 @@ export default function BalanceFlowApp() {
                             <Text className="text-white text-3xl"><ClipboardList size={32} color="white" /></Text>
                         </View> */}
                         <Text className="text-[#0d141b] dark:text-white text-2xl font-extrabold tracking-tight">
-                            BalanceFlow
+                            Task Wallet
                         </Text>
                     </View>
                 </View>

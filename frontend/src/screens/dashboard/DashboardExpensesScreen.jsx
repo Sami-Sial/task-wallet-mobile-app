@@ -162,34 +162,6 @@ const ExpensesScreen = () => {
     const totalExpense = expenses.reduce((sum, expense) => sum + parseFloat(expense.amount || 0), 0);
     const totalBalance = totalIncome - totalExpense;
 
-    // Calculate monthly spending (current month)
-    const currentMonth = new Date().getMonth();
-    const currentYear = new Date().getFullYear();
-
-    const monthlyExpenses = expenses.filter(expense => {
-        const date = new Date(expense.transaction_date);
-        return date.getMonth() === currentMonth && date.getFullYear() === currentYear;
-    });
-
-    const monthlySpending = monthlyExpenses.reduce((sum, expense) => sum + parseFloat(expense.amount || 0), 0);
-
-    // Calculate previous month for comparison
-    const prevMonth = currentMonth === 0 ? 11 : currentMonth - 1;
-    const prevYear = currentMonth === 0 ? currentYear - 1 : currentYear;
-
-    const prevMonthExpenses = expenses.filter(expense => {
-        const date = new Date(expense.transaction_date);
-        return date.getMonth() === prevMonth && date.getFullYear() === prevYear;
-    });
-
-    const prevMonthSpending = prevMonthExpenses.reduce((sum, expense) => sum + parseFloat(expense.amount || 0), 0);
-    const spendingChange = prevMonthSpending > 0
-        ? ((monthlySpending - prevMonthSpending) / prevMonthSpending) * 100
-        : 0;
-
-    // Calculate balance change (simplified - comparing last 30 days to previous 30 days)
-    const balanceChange = 2.4; // You can calculate this based on your needs
-
     // Combine and sort transactions by date (most recent first)
     const allTransactions = [
         ...expenses.map(e => ({ ...e, type: 'expense' })),
@@ -364,48 +336,14 @@ const ExpensesScreen = () => {
                             <Text className="text-[#19e65e] text-2xl font-bold mt-2">
                                 ${totalBalance.toFixed(2)}
                             </Text>
-                            <View className="flex-row items-center gap-1 mt-2">
-                                {balanceChange >= 0 ? (
-                                    <>
-                                        <TrendingUp size={16} color="#0bda43" />
-                                        <Text className="text-[#0bda43] text-sm font-medium">
-                                            +{balanceChange.toFixed(1)}%
-                                        </Text>
-                                    </>
-                                ) : (
-                                    <>
-                                        <TrendingDown size={16} color="#fa5538" />
-                                        <Text className="text-[#fa5538] text-sm font-medium">
-                                            {balanceChange.toFixed(1)}%
-                                        </Text>
-                                    </>
-                                )}
-                            </View>
                         </View>
 
-                        {/* Monthly Spending Card */}
+                        {/* Total Spending Card */}
                         <View className="flex-1 rounded-xl p-6 bg-[#1a3321] shadow-lg border border-white/5">
-                            <Text className="text-white/70 text-sm font-medium">Monthly Spending</Text>
+                            <Text className="text-white/70 text-sm font-medium">Total Spending</Text>
                             <Text className="text-white text-2xl font-bold mt-2">
-                                ${monthlySpending.toFixed(2)}
+                                ${totalExpense.toFixed(2)}
                             </Text>
-                            <View className="flex-row items-center gap-1 mt-2">
-                                {spendingChange <= 0 ? (
-                                    <>
-                                        <TrendingDown size={16} color="#0bda43" />
-                                        <Text className="text-[#0bda43] text-sm font-medium">
-                                            {spendingChange.toFixed(1)}%
-                                        </Text>
-                                    </>
-                                ) : (
-                                    <>
-                                        <TrendingUp size={16} color="#fa5538" />
-                                        <Text className="text-[#fa5538] text-sm font-medium">
-                                            +{spendingChange.toFixed(1)}%
-                                        </Text>
-                                    </>
-                                )}
-                            </View>
                         </View>
                     </View>
                 )}
@@ -426,8 +364,8 @@ const ExpensesScreen = () => {
                                 <TouchableOpacity
                                     key={filter.id}
                                     className={`h-10 flex-row items-center justify-center gap-2 rounded-xl px-4 shadow-sm ${isActive
-                                            ? 'bg-[#19e65e]'
-                                            : 'bg-[#244730]'
+                                        ? 'bg-[#19e65e]'
+                                        : 'bg-[#244730]'
                                         }`}
                                     onPress={() => setSelectedFilter(filter.name)}
                                 >
